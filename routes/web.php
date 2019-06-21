@@ -19,6 +19,9 @@ Route::get('/email-welcome-template', function(){
 	return new \App\Mail\NewUserWelcomeMail();
 });
 
+// users route
+Route::get('/users', 'UsersController@index')->name('users.index');
+
 // follows routes
 Route::post('/follow/{user}', 'FollowsController@create')->name('follow.create');
 
@@ -29,6 +32,6 @@ Route::post('/p', 'PostsController@store')->name('p.store');
 Route::get('/p/show/{post}', 'PostsController@show')->name('p.show');
 
 // profiles routes
-Route::get('/profiles/{user}', 'ProfilesController@index')->name('profiles.show');
+Route::get('/profiles/{user}', 'ProfilesController@show')->name('profiles.show');
 Route::get('/profiles/{user}/edit', 'ProfilesController@edit')->name('profiles.edit');
 Route::patch('/profiles/{user}', 'ProfilesController@update')->name('profiles.update');

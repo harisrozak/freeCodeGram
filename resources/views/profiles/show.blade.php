@@ -10,7 +10,10 @@
             <div class="d-flex justify-content-between align-items-baseline">
                 <div class="d-flex">
                     <h1>{{ $user->username }}</h1>
+
+                    @if(auth()->user() && auth()->user()->id != $user->id)
                     <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
+                    @endif
                 </div>
 
                 @can('update', $user->profile)
@@ -18,9 +21,9 @@
                 @endcan
             </div>
             <div class="d-flex">
-                <div class="pr-3"><strong>{{ $counts['posts'] }}</strong> posts</div>
-                <div class="pr-3"><strong>{{ $counts['followers'] }}</strong> followers</div>
-                <div class="pr-3"><strong>{{ $counts['following'] }}</strong> following</div>
+                <div class="pr-3"><strong>{{ $user->count('posts') }}</strong> posts</div>
+                <div class="pr-3"><strong>{{ $user->count('followers') }}</strong> followers</div>
+                <div class="pr-3"><strong>{{ $user->count('following') }}</strong> following</div>
             </div>
             <div class="pt-4 font-weight-bold">{{ $user->profile->title }}</div>
             <div>{{ $user->profile->description }}</div>

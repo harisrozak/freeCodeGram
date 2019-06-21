@@ -4,28 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image; // an external library for image resizing
 
 class ProfilesController extends Controller
 {
-    public function index(User $user) {
-        $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
+    public function show(User $user) {
+        // must be logged in to get the following
+        $follows = auth()->user() ? auth()->user()->following->contains($user->id) : false;
 
-        // caching count.profile.args
-        $counts = Cache::remember(
-            'count.profile.args.' . $user->id,
-            now()->addSeconds(30),
-            function() use($user) {
-                return array(
-                    'posts' => $user->posts->count(),
-                    'followers' => $user->profile->followers->count(),
-                    'following' => $user->following->count(),
-                );
-            }
-        );
-
-        return view('profiles.index', compact('user', 'follows', 'counts'));
+        // return to index profiles view
+        return view('profiles.show', compact('user', 'follows'));
     }
 
     public function edit(User $user) {

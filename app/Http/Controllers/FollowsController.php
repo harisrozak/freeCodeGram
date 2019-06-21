@@ -12,6 +12,11 @@ class FollowsController extends Controller
 	}
 
 	public function create(\App\User $user) {
-		return auth()->user()->following()->toggle($user->profile);
+		if(auth()->user()->id != $user->id) {
+			return auth()->user()->following()->toggle($user->profile);	
+		}		
+		else {
+			return false;
+		}		
 	}
 }

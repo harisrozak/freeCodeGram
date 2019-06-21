@@ -10,14 +10,22 @@ class PostsController extends Controller
 {
 	public function __construct() {
 		// make those methods access to login required
-		$this->middleware('auth');
+		// $this->middleware('auth');
 	}
 
 	public function index() {
-		$users = auth()->user()->following->pluck('user_id');
-		$posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(3);
+		if(auth()->user()) {
+			$users = auth()->user()->following->pluck('user_id');
 
-		return view('posts.index', compact('posts'));
+			// show following's posts if he has following someone
+			// otherwise show all user profiles so they can do some follow 
+			if($users->all()) {
+				$posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
+				return view('posts.index', compact('posts'));
+			}
+		}
+
+		return redirect(route('users.index'));
 	}
 
 	public function create() {

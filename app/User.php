@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Cache;
 
 class User extends Authenticatable
 {
@@ -48,7 +49,7 @@ class User extends Authenticatable
             ));
 
             // send a welcome email to the new registered user
-            Mail::to($user->email)->send(new NewUserWelcomeMail());
+            Mail::to($user->email)->send(new \App\Mail\NewUserWelcomeMail());
         });
     }
 
@@ -62,5 +63,34 @@ class User extends Authenticatable
 
     public function following() {
         return $this->belongsToMany(Profile::class);
+    }
+
+    public function count($type = 'posts') {
+        $user = $this;
+
+        // caching the counter
+        return Cache::remember(
+            sprintf("count.user.%s.%s", $type, $user->id),
+            now()->addSeconds(60),
+            function() use($user, $type) {
+                switch ($type) {
+                    case 'posts':
+                        return $user->posts->count();
+                        break;
+
+                    case 'followers':
+                        return $user->profile->followers->count();
+                        break;
+
+                    case 'following':
+                        return $user->following->count();
+                        break;
+                    
+                    default:
+                        return false;
+                        break;
+                }
+            }
+        );
     }
 }
