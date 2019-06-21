@@ -2,7 +2,7 @@
 
 A Laravel application that implemented from Coder's Tape's tutorial
 
-Visit the youtube tutorial video here: https://www.youtube.com/watch?v=ImtZ5yENzgE
+Visit the youtube video tutorial here: https://www.youtube.com/watch?v=ImtZ5yENzgE
 
 ## Develompment notes
 
