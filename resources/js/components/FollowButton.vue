@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="mt-2 ml-1"><button class="btn btn-sm btn-primary ml-2" @click="followUser" v-text="buttonText"></button></div>
+        <div class="mt-2 ml-1"><button class="btn btn-sm ml-2"  @click="followUser" v-text="buttonText" v-bind:class="classObject"></button></div>
     </div>
 </template>
 
@@ -31,6 +31,12 @@
         computed: {
             buttonText() {
                 return (this.status) ? 'Unfollow' : 'Follow';
+            },
+            classObject: function () {
+                return {
+                    'btn-primary': !this.status,
+                    'btn-secondary': this.status,
+                }
             }
         }
     }

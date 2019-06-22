@@ -39,6 +39,10 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('profiles.index') }}">{{ __('All Profiles') }}</a>
+                        </li>
+
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -50,18 +54,21 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown mr-2">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->username }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('profiles.show', auth()->user()->id) }}">
+                                    <a class="dropdown-item" href="{{ route('p.index') }}">
+                                        {{ __('Posts') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('profiles.show', auth()->user()->username) }}">
                                         {{ __('Profile') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('profiles.edit', auth()->user()->id) }}">
+                                    <a class="dropdown-item" href="{{ route('profiles.edit', auth()->user()->username) }}">
                                         {{ __('Edit Profile') }}
-                                    </a>
+                                    </a>                                    
                                     <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -72,6 +79,9 @@
                                         @csrf
                                     </form>
                                 </div>
+                            </li>
+                            <li class="nav-item py-1">                        
+                                <a class="btn btn-sm btn-primary " href="{{ route('p.create') }}">{{ __('Add New Post') }}</a>
                             </li>
                         @endguest
                     </ul>

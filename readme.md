@@ -106,3 +106,7 @@ Visit the youtube video tutorial here: https://www.youtube.com/watch?v=ImtZ5yENz
 - create a .php file on the server
 - inside the file, type "<?php symlink('/home/haris.com/harisweb/storage/app/public', '/home/haris.com/public_html/storage')"
 - run the .php file on the browser
+
+`#19` Change url parameter user_id to username
+- open file RouteServiceProvider.php
+- add route explicit-binding, detail here: https://laravel.com/docs/5.8/routing#explicit-binding 

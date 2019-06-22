@@ -3,12 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-8">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Edit Profile') }}</div>
 
-                <div class="card-body">
-                    <form action="{{ route('profiles.update', $user->id) }}" enctype="multipart/form-data" method="post">
+                <form action="{{ route('profiles.update', $user->username) }}" enctype="multipart/form-data" method="post">
+                    <div class="card-body">                    
                         @csrf
                         @method('PATCH')
 
@@ -51,12 +51,13 @@
                                 <strong class="text-danger">{{ $message }}</strong>
                             @enderror
                         </div>
-
-                        <div class="text-right pt-3">
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-right">
                             <button class="btn btn-primary">Save Profile</button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

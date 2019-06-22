@@ -25,7 +25,8 @@ class PostsController extends Controller
 			}
 		}
 
-		return redirect(route('users.index'));
+		// redirect to index profiles if its can't access the index posts
+		return redirect(route('profiles.index'));
 	}
 
 	public function create() {

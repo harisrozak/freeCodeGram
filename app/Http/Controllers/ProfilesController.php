@@ -8,6 +8,12 @@ use Intervention\Image\Facades\Image; // an external library for image resizing
 
 class ProfilesController extends Controller
 {
+    public function index() {
+        $users = User::paginate(5);
+
+        return view('profiles.index', compact('users'));
+    }
+
     public function show(User $user) {
         // must be logged in to get the following
         $follows = auth()->user() ? auth()->user()->following->contains($user->id) : false;
@@ -56,6 +62,6 @@ class ProfilesController extends Controller
 	    	)
 	    ));
 
-    	return redirect(route('profiles.show', auth()->user()->id));
+    	return redirect(route('profiles.show', auth()->user()->username));
     }
 }
