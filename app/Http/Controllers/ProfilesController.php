@@ -48,7 +48,7 @@ class ProfilesController extends Controller
 	    	$imagePath = request('image')->store('profile', 'public');
 
 	    	// resize the image with Intervention\Image\Facades\Image
-	    	$imageResizer = Image::make(public_path("storage/{$imagePath}"))->fit(1000, 1000);
+	    	$imageResizer = Image::make("storage/{$imagePath}")->fit(1000, 1000);
 	    	$imageResizer->save();
 	    }
 	    else {

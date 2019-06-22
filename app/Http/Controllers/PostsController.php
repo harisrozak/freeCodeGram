@@ -55,7 +55,7 @@ class PostsController extends Controller
 		$imagePath = request('image')->store('uploads', 'public');
 
 		// resize the image with Intervention\Image\Facades\Image
-		$imageResizer = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+		$imageResizer = Image::make("storage/{$imagePath}")->fit(1200, 1200);
 		$imageResizer->save();
 
 		// insert post to the related user
