@@ -56,7 +56,7 @@
     @endforeach
 
     <div class="row justify-content-center">
-        <div class="col-7">
+        <div class="col-md-7">
             {{ $users->links() }}
         </div>
     </div>

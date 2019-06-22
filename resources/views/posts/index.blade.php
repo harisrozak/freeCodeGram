@@ -5,7 +5,7 @@
     @if(count($posts) == 0)
 
     <div class="row justify-content-center">
-        <div class="col-8">
+        <div class="col-md-8">
             <div class="alert alert-info" role="alert">
                 There is currently no post for you. Check <a href="{{ route('profiles.index') }}">all user profiles</a> to follow a new one.
             </div>
@@ -51,7 +51,7 @@
     @endif
 
     <div class="row justify-content-center">
-        <div class="col-8">
+        <div class="col-md-8">
             {{ $posts->links() }}
         </div>
     </div>
