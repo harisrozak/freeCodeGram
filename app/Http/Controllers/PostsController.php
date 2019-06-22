@@ -30,11 +30,21 @@ class PostsController extends Controller
 	}
 
 	public function create() {
+		// must logged in
+		if(! auth()->user()) {
+			return redirect(route('login'));
+		}
+
 		// load the /resources/views/posts/create.blade.php
 		return view('posts.create');
 	}
 
 	public function store() {
+		// must logged in
+		if(! auth()->user()) {
+			return redirect(route('login'));
+		}
+
 		// validate the post data
 		$data = request()->validate(array(
 			'caption' => 'required',
@@ -55,7 +65,7 @@ class PostsController extends Controller
 		));
 
 		// redirect to current user profile page
-		return redirect(route('profiles.show', auth()->user()->id));
+		return redirect(route('profiles.show', auth()->user()->username));
 	}
 
 	public function show(\App\Post $post) {

@@ -102,11 +102,15 @@ Visit the youtube video tutorial here: https://www.youtube.com/watch?v=ImtZ5yENz
 - setup the mailtrap.io credential on .env
 - re-start the "php artisan serve" to apply the new .env settings
 
-`#18` Create symlink on server with php
-- create a .php file on the server
-- inside the file, type "<?php symlink('/home/haris.com/harisweb/storage/app/public', '/home/haris.com/public_html/storage')"
-- run the .php file on the browser
-
-`#19` Change url parameter user_id to username
+`#18` Change url parameter user_id to username
 - open file RouteServiceProvider.php
 - add route explicit-binding, detail here: https://laravel.com/docs/5.8/routing#explicit-binding 
+
+`#19` Deploy on cpanel
+- type "npm run production" to create the production stage
+- upload the whole folder to your cpanel home folder, for example '/home/haris3456/laravel_app/'
+- upload the 'public' folder to 'public_html' folder
+- set the index.php require variable to "require __DIR__.'/../laravel_app/vendor/autoload.php';"
+- set the index.php app variable to "$app = require_once __DIR__.'/../laravel_app/bootstrap/app.php';"
+- create a symlink for upload folder with cron job, for example "ln -s /home/haris3456/laravel_app/storage/app/public /home/haris3456/public_html/storage"
+
