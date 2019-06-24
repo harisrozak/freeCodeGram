@@ -10,7 +10,7 @@ class PostsController extends Controller
 {
 	public function __construct() {
 		// make those methods access to login required
-		// $this->middleware('auth');
+		$this->middleware('auth')->only(array('create', 'store'));
 	}
 
 	public function index() {
@@ -27,6 +27,10 @@ class PostsController extends Controller
 
 		// redirect to index profiles if its can't access the index posts
 		return redirect(route('profiles.index'));
+	}
+
+	public function show(\App\Post $post) {
+		return view('posts.show', compact('post'));
 	}
 
 	public function create() {
@@ -66,9 +70,5 @@ class PostsController extends Controller
 
 		// redirect to current user profile page
 		return redirect(route('profiles.show', auth()->user()->username));
-	}
-
-	public function show(\App\Post $post) {
-		return view('posts.show', compact('post'));
-	}
+	}	
 }
