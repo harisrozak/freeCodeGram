@@ -114,3 +114,6 @@ Visit the youtube video tutorial here: https://www.youtube.com/watch?v=ImtZ5yENz
 - set the index.php app variable to "$app = require_once __DIR__.'/../laravel_app/bootstrap/app.php';"
 - create a symlink for upload folder with cron job, for example "ln -s /home/haris3456/laravel_app/storage/app/public /home/haris3456/public_html/storage"
 
+`#20` Update any outdated NPM packages
+- type "npm outdated" to see any outdated packages
+- type "npm install lodash@latest --save" for example to update 'lodash' package
