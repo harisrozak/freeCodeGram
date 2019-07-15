@@ -34,21 +34,11 @@ class PostsController extends Controller
 	}
 
 	public function create() {
-		// must logged in
-		if(! auth()->user()) {
-			return redirect(route('login'));
-		}
-
 		// load the /resources/views/posts/create.blade.php
 		return view('posts.create');
 	}
 
 	public function store() {
-		// must logged in
-		if(! auth()->user()) {
-			return redirect(route('login'));
-		}
-
 		// validate the post data
 		$data = request()->validate(array(
 			'caption' => 'required',
