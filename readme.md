@@ -117,3 +117,11 @@ Visit the youtube video tutorial here: https://www.youtube.com/watch?v=ImtZ5yENz
 `#20` Update any outdated NPM packages
 - type "npm outdated" to see any outdated packages
 - type "npm install lodash@latest --save" for example to update 'lodash' package
+
+`#21` Deploying the laravel repo to local
+- clone the repository, then enter the command line inside the created folder
+- type "composer install"
+- set the .env file
+- type "php artisan migrate"
+- type "php artisan key:generate"
+- type "php artisan serve"
