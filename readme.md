@@ -112,7 +112,7 @@ Visit the youtube video tutorial here: https://www.youtube.com/watch?v=ImtZ5yENz
 - upload the 'public' folder to 'public_html' folder
 - set the index.php require variable to "require __DIR__.'/../laravel_app/vendor/autoload.php';"
 - set the index.php app variable to "$app = require_once __DIR__.'/../laravel_app/bootstrap/app.php';"
-- create a symlink for upload folder with cron job, for example "ln -s /home/haris/laravel_app/storage/app/public /home/haris/public_html/storage"
+- create a symlink for upload folder with cron job, for example "ln -s /home/haris/laravel_app/storage/app/public /home/haris/public_html/storage". Don't forget to remove the cron job after the symlink has been created
 - make sure your hosting has disabled the cache, for rumahweb.com (Indonesian) check this url: https://www.rumahweb.com/journal/cara-disable-cache-server-pada-cloud-hosting
 
 `#20` Update any outdated NPM packages
