@@ -4,7 +4,7 @@ A Laravel application that implemented from Coder's Tape's tutorial
 
 Visit the youtube video tutorial here: https://www.youtube.com/watch?v=ImtZ5yENzgE
 
-## Develompment notes
+## Development notes
 
 `#1` Install composer globally
 - open https://getcomposer.org
